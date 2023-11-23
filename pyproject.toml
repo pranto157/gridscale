@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "gridscale"
+version = "0.1.0"
+description = ""
+authors = ["pranto157 <sayed.kabir@shore.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.0"
+pydantic = "^2.5.2"
+flask-sqlalchemy = "^3.1.1"
+gunicorn = "^21.2.0"
+apiflask = "^2.0.2"
+psycopg2 = "^2.9.9"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+mypy = "^1.7.0"
+python-environ = "^0.4.54"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
