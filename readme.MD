@@ -6,6 +6,7 @@
 - Run `docker-compose up --build` and wait for the server to start.
 - Two containers, `api` and `postgres`, should be up and running.
 - The API container runs on port `1337`, while the Database operates on port `5432`.
+- To run the tests follow this command - `docker exec -it api pytest`, this will run the test inside container.
 
 ### Swagger Access
 

@@ -35,6 +35,18 @@ class CityModel(db.Model):
 
     @staticmethod
     def create(data):
+        """
+        Create a new city using the provided data and add it to the database.
+
+        Args:
+            data (dict): Data containing attributes of the new city:
+
+        Returns:
+            CityModel: The created city object.
+
+        Raises:
+            Exception: If there's an issue during city creation or database transaction.
+        """
         try:
             city = CityModel(
                 city_uuid=data["city_uuid"],
@@ -56,6 +68,25 @@ class CityModel(db.Model):
 
     @staticmethod
     def delete(city_uuid):
+        """
+        Delete a city and update its aligned cities' references.
+
+        Args:
+            city_uuid (str): The UUID of the city to be deleted.
+
+        Returns:
+            bool: True if the city is successfully deleted; False otherwise.
+
+        Note:
+            - Removes the specified city from the database.
+            - Updates the aligned cities by removing
+              the deleted city from their references.
+            - Rolls back the transaction in case of a database error.
+
+        Raises:
+            SQLAlchemyError: If there's an issue during the database transaction.
+        """
+
         try:
             aligned_cities = []
             with db.session.begin():
@@ -86,6 +117,26 @@ class CityModel(db.Model):
         return True
 
     def get_allied_power(self):
+        """
+        Calculate the allied power of the city considering its allies.
+
+        The method calculates the combined power of the city and its allies,
+        adjusting the ally's contribution based on distance.
+
+        Returns:
+            int: The combined power of the city and its allies.
+
+        Note:
+            - If there are no allied cities, returns None.
+            - The allied power considers distance to adjust ally contributions:
+                - If an ally is more than 10,000 km away,
+                        their contribution is quartered.
+                - If an ally is between 1,000 and 10,000 km away,
+                        their contribution is halved.
+                - If an ally is within 1,000 km,
+                        their entire population contributes.
+        """
+
         allied_power = self.population  # Initialize with the city's population
 
         if (
@@ -112,6 +163,26 @@ class CityModel(db.Model):
         return allied_power
 
     def update_from_request_data(self, data):
+        """
+        Update the city attributes based on the provided request data.
+
+        Args:
+            data (dict): The request data containing updated city attributes.
+
+        Note:
+            - Validates the existence of each provided
+                allied city UUID in the database.
+            - Updates the city's allied_cities attribute
+                with the new values if all UUIDs exist.
+            - Updates other attributes like
+                name, geo_location_latitude, geo_location_longitude,
+            beauty, and population based on the provided data.
+
+        Raises:
+            SQLAlchemyError: If there's an issue during the
+                validation or database transaction.
+        """
+
         new_allied_cities = data.get("allied_cities", self.allied_cities)
 
         # Validate if each UUID exists in the database before updating

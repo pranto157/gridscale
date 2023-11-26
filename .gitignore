@@ -37,6 +37,8 @@ ENV/
 env.bak/
 venv.bak/
 .ruff_cache
+# local pytest  will create the test db here
+instance
 
 #IDEs
 .idea
