@@ -33,7 +33,6 @@
 - Implement pagination for the `GET citites` API.
 - Conduct thorough query optimization and refactoring to ensure DRY (Don't Repeat Yourself) principles are followed.
 
-Feel free to expand further on each section as needed or include any additional specific details.
 
 Read More API Doc:
 - [`GET /api/cities`](https://github.com/pranto157/gridscale/wiki/GET--api-cities)
