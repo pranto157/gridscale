@@ -4,6 +4,9 @@ parameters:
     required: true
     description: The UUID of the City!
     type: string
+
 responses:
   200:
-    description: City Found!
+    description: Information about a city
+    schema:
+      $ref: '#/definitions/City'
