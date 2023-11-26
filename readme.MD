@@ -35,9 +35,17 @@
 - Conduct thorough query optimization and refactoring to ensure DRY (Don't Repeat Yourself) principles are followed.
 
 
-Read More API Doc:
+### Read More API Doc:
 - [`GET /api/cities`](https://github.com/pranto157/gridscale/wiki/GET--api-cities)
 - [`POST /api/cities`](https://github.com/pranto157/gridscale/wiki/POST--api-cities)
 - [`GET /api/city/{city_uuid}`](https://github.com/pranto157/gridscale/wiki/GET--api-city-%7Bcity_uuid%7D)
 - [`PUT /api/city/{city_uuid}`](https://github.com/pranto157/gridscale/wiki/PUT--api-city-%7Bcity_uuid%7D)
 - [`DELETE /api/city/{city_uuid}`](https://github.com/pranto157/gridscale/wiki/DELETE--api-city-%7Bcity_uuid%7D)
+
+### Tech Stack
+- [Flask Python Framework](https://flask.palletsprojects.com/en/3.0.x/)
+- [Flast Restful](https://flask-restful.readthedocs.io/en/latest/)
+- [Postgres](https://www.postgresql.org/)
+- [Poetry](https://python-poetry.org/)
+- [Pytest](https://docs.pytest.org/en/7.4.x/)
+- [Flask Mashmellow](https://flask-marshmallow.readthedocs.io/en/latest/)
