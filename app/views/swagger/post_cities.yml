@@ -1,0 +1,47 @@
+summary: create new city
+description: POST a city
+
+parameters:
+  - in: body
+    name: city
+    description: City details
+    required: true
+    schema:
+      $ref: '#/definitions/CityCreateSchema'
+
+responses:
+  201:
+    description: City has been created.
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/CityCreateSchema'
+
+definitions:
+  CityCreateSchema:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the city
+      geo_location_latitude:
+        type: number
+        format: float
+        description: Latitude of the city's location
+      geo_location_longitude:
+        type: number
+        format: float
+        description: Longitude of the city's location
+      beauty:
+        type: string
+        enum: [ugly, average, gorgeous]
+        description: Beauty level of the city
+      population:
+        type: integer
+        format: int64
+        description: Population count of the city
+      allied_cities:
+        type: array
+        items:
+          type: string
+        description: List of allied cities, if any

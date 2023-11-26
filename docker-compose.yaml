@@ -3,18 +3,22 @@ version: "3.9"
 services:
   api:
     build: .
+    container_name: api
     env_file:
       - .env
     volumes:
       - .:/code
     ports:
-        - "5002:5000"
+      - "5002:5000"
+    stdin_open: true # für pdb
+    tty: true # für pdb
     depends_on:
       - database
     command: flask run --host=0.0.0.0 --port=5000 --reload
 
   database:
     image: postgres:14
+    container_name: postgres
     restart: always
     env_file:
       - .env

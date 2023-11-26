@@ -1,0 +1,9 @@
+parameters:
+  - in: path
+    name: city_uuid
+    required: true
+    description: The UUID of the City!
+    type: string
+responses:
+  200:
+    description: City Found!

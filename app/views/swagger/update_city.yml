@@ -1,0 +1,52 @@
+summary: Update city
+description: Update a city
+
+parameters:
+  - in: path
+    name: city_uuid
+    required: true
+    description: The UUID of the City!
+    type: string
+  - in: body
+    name: city
+    description: City details
+    required: true
+    schema:
+      $ref: '#/definitions/CityCreateSchema'
+
+responses:
+  200:
+    description: A list of cities filtered by name
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/City'
+
+definitions:
+  CityCreateSchema:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the city
+      geo_location_latitude:
+        type: number
+        format: float
+        description: Latitude of the city's location
+      geo_location_longitude:
+        type: number
+        format: float
+        description: Longitude of the city's location
+      beauty:
+        type: string
+        enum: [Ugly, Average, Gorgeous]
+        description: Beauty level of the city
+      population:
+        type: integer
+        format: int64
+        description: Population count of the city
+      allied_cities:
+        type: array
+        items:
+          type: string
+        description: List of allied cities, if any

@@ -1,8 +1,6 @@
-from apiflask import APIBlueprint as Blueprint
-from flask import jsonify
+from flask import jsonify, Blueprint
 from werkzeug.http import HTTP_STATUS_CODES
 
-from app import db
 
 bp = Blueprint("errors", __name__)
 
@@ -28,5 +26,7 @@ def not_found_error(error):
 
 @bp.app_errorhandler(500)
 def internal_error(error):
+    from app import db
+
     db.session.rollback()
     return error_response(500)
