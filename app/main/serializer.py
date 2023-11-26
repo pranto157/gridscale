@@ -16,8 +16,12 @@ from app.main.utils import (
 
 class CityRequestParamsSchema(Schema):
     name = fields.String()
-    geo_location_latitude = fields.Float()
-    geo_location_longitude = fields.Float()
+    geo_location_latitude = fields.Float(
+        validate=validate.Range(min=MIN_LATITUDE, max=MAX_LATITUDE)
+    )
+    geo_location_longitude = fields.Float(
+        validate=validate.Range(min=MIN_LONGITUDE, max=MAX_LONGITUDE)
+    )
     beauty = fields.String(validate=validate.OneOf([val.value for val in BeautyEnum]))
 
 

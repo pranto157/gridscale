@@ -9,12 +9,13 @@ services:
     volumes:
       - .:/code
     ports:
-      - "5002:5000"
+      - "1337:5000"
     stdin_open: true # für pdb
     tty: true # für pdb
     depends_on:
       - database
-    command: flask run --host=0.0.0.0 --port=5000 --reload
+    command: >
+      sh -c "alembic upgrade head && flask run --host=0.0.0.0 --port=5000 --reload"
 
   database:
     image: postgres:14

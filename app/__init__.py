@@ -4,7 +4,6 @@ import environ
 from flask_restful import Api
 from flask import Flask
 from flask.logging import default_handler
-from flask_migrate import Migrate
 from flasgger import Swagger
 
 from app.main.db import db
@@ -13,8 +12,6 @@ from .logger import get_handler
 from app.views.cities import CityListView, CityView
 
 env = environ.Env()
-
-migrate = Migrate()
 
 
 def create_app(config=None):
@@ -30,7 +27,6 @@ def create_app(config=None):
     app.config.from_object(config)
 
     db.init_app(app)
-
     # customize logger
     app.logger.removeHandler(default_handler)
     app.logger.addHandler(get_handler())
@@ -49,6 +45,6 @@ def create_app(config=None):
     app.register_blueprint(errors_bp)
 
     api.add_resource(CityListView, "/api/cities")
-    api.add_resource(CityView, "/api/cities/<city_uuid>")
+    api.add_resource(CityView, "/api/city/<city_uuid>")
 
     return app
