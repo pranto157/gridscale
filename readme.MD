@@ -26,7 +26,7 @@
 - `geo_location_latitude` should range between `-90` and `90`.
 - `geo_location_longitude` should range between `-180` and `180`.
 - For `POST` or `PUT` requests, `allied_cities` must reference existing cities in the database; otherwise, it raises a validation error.
-- `allied_power` is accessible via `GET http://127.0.0.1:1337/api/city/{city_uuid}` and calculates based on specific requirements ([logic details](https://github.com/pranto157/gridscale/blob/master/app/models/city.py#L88-L112)).
+- `allied_power` is accessible via `GET http://127.0.0.1:1337/api/city/{city_uuid}` and calculates based on specific requirements ([logic details](https://github.com/pranto157/gridscale/blob/master/app/models/city.py#L140-L163)).
 - Other validations are implemented using Marshmallow serializers for parsing request data and parameters.
 
 ### Future Improvements
